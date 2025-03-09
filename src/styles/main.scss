@@ -1,5 +1,5 @@
-@use './login.scss' as *; 
-@use 'variables' as *;
+@use "./login.scss" as *;
+@use "variables" as *;
 
 * {
   margin: 0;
@@ -209,7 +209,8 @@ body {
       font-weight: 500;
     }
 
-    input, textarea {
+    input,
+    textarea {
       width: 100%;
       padding: $spacing-sm;
       border: 1px solid $border-color;
@@ -236,5 +237,66 @@ body {
     &:hover {
       background-color: darken($primary-color, 10%);
     }
+  }
+}
+
+.logout-btn {
+  padding: 2px 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: #0071dc;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.profile-container {
+  width: 100vw;
+  height: calc(100vh - 100px);
+  display: grid;
+  place-items: center;
+  .stick{
+    width: 1px;
+    height: 300px;
+    background-color: #000000;
+  }
+  .profile-content {  
+    overflow: hidden;
+    padding: 50px;
+    width: autp;
+    height: auto;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    .left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 300px;
+        height: auto;
+        margin: 0 auto;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+    .right{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  b{
+    color: #2e8c81;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  p{
+    color: #000000;
+    font-size: 16px;
+    font-weight: 600;
   }
 }
