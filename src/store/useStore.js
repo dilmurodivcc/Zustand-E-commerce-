@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 const useStore = create((set) => ({
   products: [],
@@ -36,7 +36,9 @@ const useStore = create((set) => ({
 
   addToCart: (product) =>
     set((state) => {
-      const existingItem = state.cartItems.find((item) => item.id === product.id);
+      const existingItem = state.cartItems.find(
+        (item) => item.id === product.id
+      );
       if (existingItem) {
         return {
           cartItems: state.cartItems.map((item) =>

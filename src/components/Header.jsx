@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { ShoppingCart, Heart, Package, Home } from 'lucide-react';
+import { ShoppingCart, Heart, Package, Home, User } from 'lucide-react';
 import useStore from '../store/useStore';
 
 const Header = () => {
@@ -25,6 +25,9 @@ const Header = () => {
           </NavLink>
           <NavLink to="/admin">
             <Package size={20} /> Mahsulotlar
+          </NavLink>
+          <NavLink to="/login">
+            <User size={20} /> Login
           </NavLink>
         </nav>
       </div>
