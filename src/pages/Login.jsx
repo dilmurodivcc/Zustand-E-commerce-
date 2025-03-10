@@ -1,6 +1,7 @@
 import loginImg from "../assets/Untitled.png";
 import { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
 import API from "../API";
 
 const Login = () => {
@@ -12,23 +13,24 @@ const Login = () => {
     return <Navigate to="/profile" />;
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await API.post("/auth/login", {
-        username,
-        password,
-      });
-
-      if (res.status === 200) {
-        localStorage.setItem("token", res.data.accessToken);
-        window.dispatchEvent(new Event("storage"));
-        navigate("/profile");
-      }
-    } catch (error) {
+  const mutation = useMutation({
+    mutationFn: async () => {
+      const res = await API.post("/auth/login", { username, password });
+      return res.data;
+    },
+    onSuccess: (data) => {
+      localStorage.setItem("token", data.accessToken);
+      window.dispatchEvent(new Event("storage"));
+      navigate("/profile");
+    },
+    onError: (error) => {
       console.error("Login xatosi:", error);
-    }
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate(); // `useMutation` orqali login so‘rovi jo‘natiladi
   };
 
   return (
@@ -57,8 +59,11 @@ const Login = () => {
                 name="password"
               />
             </div>
-            <button type="submit">Login</button>
+            <button type="submit" disabled={mutation.isLoading}>
+              {mutation.isLoading ? "Yuklanmoqda..." : "Login"}
+            </button>
           </form>
+          {mutation.isError && <p style={{ color: "red" }}>Login xatosi!</p>}
         </div>
         <div className="right-side">
           <img src={loginImg} alt="Login" />
