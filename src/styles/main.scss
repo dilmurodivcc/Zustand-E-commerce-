@@ -140,6 +140,28 @@ body {
   }
 }
 
+
+.admin{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: start;
+  padding: 50px;
+  gap: 20px;
+  .form{
+    margin: 0;
+    width: 400px;
+  }
+  .product-grid{
+    margin: 0;
+    width: calc(100% - 420px);
+    padding: 0;
+    background-color: #0071dc;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+}
 .empty-state {
   text-align: center;
   padding: $spacing-xl;

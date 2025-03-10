@@ -29,19 +29,19 @@ const Header = () => {
         </NavLink>
         <nav className="header__nav">
           <NavLink to="/">
-            <Home size={20} /> Bosh sahifa
+            <Home size={20} /> Home
           </NavLink>
           <NavLink to="/likes">
-            <Heart size={20} /> Sevimlilar ({likedProducts.length})
+            <Heart size={20} /> Favorite ({likedProducts.length})
           </NavLink>
           <NavLink to="/cart">
-            <ShoppingCart size={20} /> Savatcha ({cartItems.length})
+            <ShoppingCart size={20} /> Cart ({cartItems.length})
           </NavLink>
-          <NavLink to="/admin">
-            <Package size={20} /> Mahsulotlar
+          <NavLink to="/admin" style={{ display: isLoggedIn ? 'block' : 'none' }}>
+            <Package size={20} /> Add Page
           </NavLink>
-          <NavLink to="/profile">
-            <User size={20} /> Profil
+          <NavLink to="/profile" style={{ display: isLoggedIn ? 'block' : 'none' }}>
+            <User size={20} /> Profile
           </NavLink>
 
           {isLoggedIn ? (

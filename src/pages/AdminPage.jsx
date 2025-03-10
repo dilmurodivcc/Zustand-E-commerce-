@@ -5,6 +5,9 @@ import { Edit2, Trash2 } from 'lucide-react';
 const AdminPage = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const { products, addProduct, removeProduct, updateProduct } = useStore();
+  if (!localStorage.getItem("token")) {
+    return <Navigate to="/login" />;
+  }
 
   const [formData, setFormData] = useState({
     name: '',
@@ -19,7 +22,7 @@ const AdminPage = () => {
       id: editingProduct || crypto.randomUUID(),
       name: formData.name,
       price: Number(formData.price),
-      image: formData.image,
+      image: formData.image || 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
       description: formData.description,
     };
 
@@ -47,7 +50,7 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container admin">
       <form className="form" onSubmit={handleSubmit}>
         <h2>{editingProduct ? "Mahsulotni tahrirlash" : "Yangi mahsulot qo'shish"}</h2>
         <div className="form__group">
@@ -77,7 +80,7 @@ const AdminPage = () => {
             id="image"
             value={formData.image}
             onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-            required
+            
           />
         </div>
         <div className="form__group">
