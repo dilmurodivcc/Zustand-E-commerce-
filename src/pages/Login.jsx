@@ -4,8 +4,8 @@ import { useNavigate, Navigate } from "react-router-dom";
 import API from "../API";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("emilys");
+  const [password, setPassword] = useState("emilyspass");
   const navigate = useNavigate();
 
   if (localStorage.getItem("token")) {
@@ -21,9 +21,9 @@ const Login = () => {
         password,
       });
 
-      if (res.status === 200) { // ✅ statusText o'rniga status === 200 ishlatish
+      if (res.status === 200) {
         localStorage.setItem("token", res.data.accessToken);
-        window.dispatchEvent(new Event("storage")); // ✅ Header ni avtomatik yangilash
+        window.dispatchEvent(new Event("storage"));
         navigate("/profile");
       }
     } catch (error) {
